@@ -1,4 +1,5 @@
 # Audio Amplitude Visualization and Metadata Generation
+![image](https://github.com/gm3/audioChunks/assets/7612104/de6139ab-ad7e-4e34-b828-d99c61ec3076)
 
 ## Overview
 
