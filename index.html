@@ -4,23 +4,24 @@
     <title>Audio Amplitude Visualization</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-
-<svg id="audioContainer" class="audio-container"></svg>
-
-<div id="metadataContainer" class="metadata-container"></div>
-
-
-<div id="buttonContainer" class="button-container">
-    <button id="prevButton">Previous</button>
-    <button id="nextButton">Next</button>
+    <svg id="audioContainer" class="audio-container"></svg>
     
-</div>
+    <div id="metadataContainer" class="metadata-container"></div>
 
-<div id="currentAudioFileName" class="audio-file-name"></div>
+    <div id="buttonContainer" class="button-container">
+        <button id="prevButton">Previous</button>
+        <button id="nextButton">Next</button>
+    </div>
 
+    <div id="currentAudioFileName" class="audio-file-name"></div>
 
-<script src="script.js"></script>
+    <script src="metadata.js"></script>
+    <script src="renderGraph.js"></script>
+    <script src="loadGraph.js"></script>
+    <script src="loadUI.js"></script>  <!-- Include if you have it -->
+    <script src="main.js"></script>
 
 </body>
 </html>
