@@ -3,17 +3,17 @@ import json
 from pydub import AudioSegment
 import numpy as np
 
-def create_metadata_json(json_file):
+def create_metadata_json(json_file, audio_file):
     base_name = os.path.splitext(json_file)[0]  # Get the name without the .json extension
     metadata = {
-        "name": base_name,
+        "name": f"BoomBox #{base_name}",
         "created_by": "Boomboxhead",
         "external_url": "https://twitter.com/boomboxheads",
         "description": "BoomBoxes are special edition multi-format NFT project featuring powerpack of collectibles containing a VRM, a BoomBoxcar, a BoomBot pet, and a Beat! All including posed 3d GLB collectibles.",
         "vrm_url": "ipfs://changethis",
         "pet_url": "ipfs://changethis",
         "car_url": "ipfs://changethis",
-        "audio_url": f"ipfs://{json_file}",
+        "audio_url": f"ipfs://{audio_file}",
         "animation_url": "ipfs://changethis",
         "image": "ipfs://changethis",
         "background_color": "0000FF",
@@ -27,9 +27,10 @@ def create_metadata_json(json_file):
             {"trait_type": "Body", "value": "Gold"}
         ]
     }
+
     metadata_json_path = os.path.join('./json/metadata', json_file)
     with open(metadata_json_path, 'w') as f:
-        json.dump(metadata, f)
+        json.dump(metadata, f, indent=4)  # Added indent for better readability of output JSON
 
 def create_audio_file_list_json(audio_files):
     audio_file_paths = [os.path.join('./audio', audio_file) for audio_file in audio_files]
@@ -53,9 +54,10 @@ def process_audio(audio_path, json_path):
     with open(json_path, 'w') as f:
         json.dump(amplitudes, f)
 
-        # Create metadata JSON
+         # Create metadata JSON
+    audio_file = os.path.basename(audio_path)
     json_file = os.path.basename(json_path)
-    create_metadata_json(json_file)
+    create_metadata_json(json_file, audio_file)
 
 def process_multiple_audio_files(audio_files):
     json_dir = './json'

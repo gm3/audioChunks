@@ -54,16 +54,77 @@ body {
     margin-top: 10px;
 }
 .metadata-container {
-    width: 200px;
-    height: 1000px;
-    position: fixed;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(141, 140, 140, 0.8);
+    width: 1000px;
+    height: 200px;
+    position: reletive;
+    right: 0; 
+    background-color: rgba(51, 51, 51, 0.8);
     color: white;
     font-family: "Courier New", Courier, monospace;
-    font-size: 10px;
+    font-size: 15mv;
     padding: 20px;
     overflow: auto;
+    white-space: pre;
+    word-wrap: normal;
+
+}
+
+.metadata-container pre {
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/* HUD styles */
+.hud {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: static;
+    bottom: 1vw; /* Distance from the bottom */
+   
+    gap: 1em; /* Space between badges */
+}
+
+/* Stacked layout for smaller screens */
+@media (max-width: 768px) {
+    .hud {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+.badge {
+    min-width: 50px; /* Set a minimum width */
+    width: 3vw; /* Adjust size as needed */
+    filter: grayscale(1); /* Desaturate the badge */
+    opacity: 0.8; /* Make it slightly transparent */
+    position: relative; /* To position the tooltip */
+    z-index: 1000;  /* ensure it's above other elements */
+}
+
+.badge:hover {
+    filter: grayscale(0); /* Fully colored on hover */
+    opacity: 1; /* Fully opaque on hover */
+}
+
+.badge::before {
+    content: attr(data-tooltip); /* Use data attribute for tooltip text */
+    position: absolute;
+    bottom: 100%; /* Place it above the badge */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);  /* combining the two transforms */
+    background-color: rgba(0, 255, 0, 0.9); /* Green background with slight transparency */
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap; /* Prevent the text from wrapping */
+   
+}
+
+.badge:hover::before {
+    opacity: 1;
+   
 }

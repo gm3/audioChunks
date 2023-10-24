@@ -14,17 +14,18 @@ async function loadGraph() {
     const currentMetadata = await metadataResponse.json();
     
     const metadataContainer = document.getElementById("metadataContainer");
-    metadataContainer.innerHTML = `<h3>Metadata for ${jsonFile}</h3>`;
-    for (const key in currentMetadata) {
-        if (currentMetadata.hasOwnProperty(key)) {
-            metadataContainer.innerHTML += `<p><strong>${key}:</strong> ${currentMetadata[key]}</p>`;
-        }
-    }
-
+    
+    // Convert entire metadata object to JSON string with indentation
+    const formattedJsonString = JSON.stringify(currentMetadata, null, 2);
+    
+    // Using <pre> tag to maintain JSON formatting
+    metadataContainer.innerHTML = `<h3>Metadata for ${jsonFile}</h3><pre>${formattedJsonString}</pre>`;
+    
     // Update the div to show the current JSON file
     const currentAudioFileNameDiv = document.getElementById("currentAudioFileName");
     currentAudioFileNameDiv.textContent = `Currently loaded: ${jsonFile}`;
 }
+
 
 function nextAudio() {
     if (currentAudioIndex < audioFiles.length - 1) {
