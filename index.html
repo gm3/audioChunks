@@ -2,49 +2,18 @@
 <html>
 <head>
     <title>Audio Amplitude Visualization</title>
-    <style>
-        .bar {
-            width: 8px;
-            height: 100px;
-            display: inline-block;
-            background-color: #007bff;
-        }
-        .audio-container {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-<h1>Audio Amplitude Visualization</h1>
+<div id="audioContainer" class="audio-container"></div>
 
-<!-- Containers for the bar graphs -->
-<div id="audio1Container" class="audio-container"></div>
-<div id="audio2Container" class="audio-container"></div>
-<div id="audio3Container" class="audio-container"></div>
+<div id="buttonContainer" class="button-container">
+<button id="nextButton">Next</button>
+<button id="prevButton">Previous</button>
+</div>
 
-<script>
-    // Function to load JSON and render the graph
-    async function loadAndRenderGraph(jsonFile, containerId) {
-        const response = await fetch(`./json/${jsonFile}`);
-        const amplitudes = await response.json();
-
-        const container = document.getElementById(containerId);
-        container.innerHTML = ""; // Clear previous bars
-
-        amplitudes.forEach(amp => {
-            const bar = document.createElement("div");
-            bar.className = "bar";
-            bar.style.height = `${amp / 100}px`;
-            container.appendChild(bar);
-        });
-    }
-
-    // Load and render the graphs for the audio files
-    loadAndRenderGraph("audio1.json", "audio1Container");
-    loadAndRenderGraph("audio2.json", "audio2Container");
-    loadAndRenderGraph("audio3.json", "audio3Container");
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

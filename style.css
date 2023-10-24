@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+}
+
+.audio-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+.bar {
+    display: inline-block;
+    background-color: #007bff;
+}
+
+.nextButton{
+    
+  
+    
+    
+  
+
+}
+.prevButton{
+    
+    
+    
+    
+    
+
+}
+.button-container {
+    position: relative;
+}
