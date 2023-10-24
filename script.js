@@ -5,36 +5,65 @@ async function loadMetadata() {
     const response = await fetch('./json/metadata.json');
     const metadata = await response.json();
     audioFiles = metadata.audio_files;
+
+    // Update the metadataContainer div
+    const metadataContainer = document.getElementById("metadataContainer");
+    metadataContainer.innerHTML = "<h3>Metadata</h3>";
+    for (const key in metadata) {
+        if (metadata.hasOwnProperty(key)) {
+            metadataContainer.innerHTML += `<p><strong>${key}:</strong> ${metadata[key]}</p>`;
+        }
+    }
 }
 
 async function loadAndRenderGraph(jsonFile, containerId) {
     const response = await fetch(`./json/${jsonFile}`);
     let amplitudes = await response.json();
 
-    // Normalize the amplitude values
     const maxAmplitude = Math.max(...amplitudes);
     amplitudes = amplitudes.map(amp => amp / maxAmplitude);
 
-    const container = document.getElementById(containerId);
-    container.innerHTML = "";
+    const svg = document.getElementById(containerId);
+    svg.innerHTML = "";
 
     const numberOfBars = amplitudes.length;
-    const barWidth = 500 / numberOfBars; // 500px is the width of the container
+    const barWidth = 500 / numberOfBars;
 
-    amplitudes.forEach(amp => {
-        const bar = document.createElement("div");
-        bar.className = "bar";
-        bar.style.height = `${amp * 500}px`;  // 500px is the height of the container
-        bar.style.width = `${barWidth}px`;
-        container.appendChild(bar);
+    amplitudes.forEach((amp, index) => {
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("x", index * barWidth);
+        rect.setAttribute("y", 500 - amp * 500);
+        rect.setAttribute("width", barWidth + 5);
+        rect.setAttribute("height", amp * 500 / 2);
+
+        const hue = 100 * (10 - amp);
+        rect.setAttribute("fill", `hsl(${hue}, 100%, 50%)`);
+
+        svg.appendChild(rect);
     });
 }
 
-
-function loadGraph() {
+async function loadGraph() {
     const jsonFile = audioFiles[currentAudioIndex];
-    loadAndRenderGraph(jsonFile, "audioContainer");
+    await loadAndRenderGraph(jsonFile, "audioContainer");
+
+    // Fetch and display metadata for the current JSON file
+    const metadataResponse = await fetch(`./json/metadata/${jsonFile}`);
+    const currentMetadata = await metadataResponse.json();
+    
+    const metadataContainer = document.getElementById("metadataContainer");
+    metadataContainer.innerHTML = `<h3>Metadata for ${jsonFile}</h3>`;
+    for (const key in currentMetadata) {
+        if (currentMetadata.hasOwnProperty(key)) {
+            metadataContainer.innerHTML += `<p><strong>${key}:</strong> ${currentMetadata[key]}</p>`;
+        }
+    }
+
+    // Update the div to show the current JSON file
+    const currentAudioFileNameDiv = document.getElementById("currentAudioFileName");
+    currentAudioFileNameDiv.textContent = `Currently loaded: ${jsonFile}`;
 }
+
 
 function nextAudio() {
     if (currentAudioIndex < audioFiles.length - 1) {
