@@ -49,9 +49,10 @@ The web interface uses vanilla JavaScript to visualize the amplitude data and di
 2. Click the "Previous" and "Next" buttons to navigate through different audio files.
 
 ## File Structure
-
+```
 ├── audio # Place your audio files here
 ├── json # JSON files will be generated here
 │ └── metadata # Metadata JSON files will be stored here
 ├── script.js # JavaScript for the web interface
 └── index.html # HTML file for the web interface
+```
