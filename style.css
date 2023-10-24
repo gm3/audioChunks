@@ -9,8 +9,8 @@ body {
 }
 
 .audio-container {
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
     position: relative;
     background-color: rgb(0, 0, 0);
 }
@@ -43,8 +43,8 @@ body {
 
 
 #container {
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
     margin: auto;
 }
 .audio-file-name {
@@ -55,7 +55,7 @@ body {
 }
 .metadata-container {
     width: 200px;
-    height: 1000px;
+    height: 500px;
     position: fixed;
     right: 0;
     top: 50%;
