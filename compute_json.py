@@ -31,9 +31,14 @@ def create_metadata_json(json_file):
     with open(metadata_json_path, 'w') as f:
         json.dump(metadata, f)
 
+def create_audio_file_list_json(audio_files):
+    audio_file_paths = [os.path.join('./audio', audio_file) for audio_file in audio_files]
+    with open('./json/audio_file_list.json', 'w') as f:
+        json.dump(audio_file_paths, f)
+
 def process_audio(audio_path, json_path):
     audio = AudioSegment.from_file(audio_path, format="mp3")
-    num_chunks = 2048
+    num_chunks = 1024
     chunk_length = len(audio) // num_chunks
     amplitudes = []
 
@@ -69,6 +74,8 @@ def process_multiple_audio_files(audio_files):
     metadata = {'audio_files': [f.replace('.mp3', '.json') for f in audio_files]}
     with open('./json/metadata.json', 'w') as f:
         json.dump(metadata, f)
+
+    create_audio_file_list_json(audio_files)    
 
 if __name__ == "__main__":
     audio_files = [f for f in os.listdir('./audio') if f.endswith('.mp3')]
