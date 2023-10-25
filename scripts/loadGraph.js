@@ -19,7 +19,7 @@ async function loadGraph() {
     const formattedJsonString = JSON.stringify(currentMetadata, null, 2);
     
     // Using <pre> tag to maintain JSON formatting
-    metadataContainer.innerHTML = `<h3>Metadata for ${jsonFile}</h3><pre>${formattedJsonString}</pre>`;
+    metadataContainer.innerHTML = `<pre>${formattedJsonString}</pre>`;
     
     // Update the div to show the current JSON file
     const currentAudioFileNameDiv = document.getElementById("currentAudioFileName");

@@ -4,7 +4,7 @@ async function loadMetadata() {
     audioFiles = metadata.audio_files;
 
     const metadataContainer = document.getElementById("metadataContainer");
-    metadataContainer.innerHTML = "<h3>Metadata</h3>";
+    //metadataContainer.innerHTML = "<h3>Metadata</h3>";
 
     for (const key in metadata) {
         if (metadata.hasOwnProperty(key)) {
