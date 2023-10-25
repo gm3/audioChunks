@@ -34,8 +34,8 @@ const response = await fetch(`./json/${jsonFile}`);
       const backgroundRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       backgroundRect.setAttribute("x", 0);
       backgroundRect.setAttribute("y", 0);
-      backgroundRect.setAttribute("width", 1000);
-      backgroundRect.setAttribute("height", 1000);
+      backgroundRect.setAttribute("width", 500);
+      backgroundRect.setAttribute("height", 500);
       backgroundRect.setAttribute("fill", "url(#gradient)");
       svg.appendChild(backgroundRect);
   
@@ -43,8 +43,8 @@ const response = await fetch(`./json/${jsonFile}`);
       const numberOfStars = 200;
       for (let i = 0; i < numberOfStars; i++) {
           const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-          const x = Math.random() * 1000;
-          const y = Math.random() * 1000;
+          const x = Math.random() * 500;
+          const y = Math.random() * 500;
           const r = Math.random() * 1;
   
           star.setAttribute("cx", x);
@@ -57,13 +57,13 @@ const response = await fetch(`./json/${jsonFile}`);
       }
 
     const numberOfShapes = amplitudes.length;
-    const shapeWidth = 1000 / numberOfShapes;
+    const shapeWidth = 500 / numberOfShapes;
 
     amplitudes.forEach((amp, index) => {
         
         
         const x = index * shapeWidth;
-        const y = 1000 - amp * 1000;
+        const y = 500 - amp * 500;
         let hue = 100 * (10 - amp);
         let shapeElement;
 
@@ -74,7 +74,7 @@ const response = await fetch(`./json/${jsonFile}`);
                 shapeElement.setAttribute("x", x);
                 shapeElement.setAttribute("y", y);
                 shapeElement.setAttribute("width", shapeWidth+1);
-                shapeElement.setAttribute("height", amp*1000);
+                shapeElement.setAttribute("height", amp*500);
 
                 
                 break;
@@ -86,7 +86,7 @@ const response = await fetch(`./json/${jsonFile}`);
                 break;
             case 2:  // Triangle (Polygon)
                 shapeElement = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-                const points = `${x},${y} ${x + shapeWidth+1},${y} ${x + shapeWidth},${y - amp + 1000}`;
+                const points = `${x},${y} ${x + shapeWidth+1},${y} ${x + shapeWidth},${y - amp + 500}`;
                 shapeElement.setAttribute("points", points);
                 break;
            

@@ -9,8 +9,8 @@ body {
 }
 
 .audio-container {
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
     position: relative;
     background-color: rgb(0, 0, 0);
 }
@@ -43,8 +43,8 @@ body {
 
 
 #container {
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
     margin: auto;
 }
 .audio-file-name {
@@ -54,7 +54,7 @@ body {
     margin-top: 10px;
 }
 .metadata-container {
-    width: 1000px;
+    width: 500px;
     height: 200px;
     position: reletive;
     right: 0; 
@@ -66,6 +66,7 @@ body {
     overflow: auto;
     white-space: pre;
     word-wrap: normal;
+    margin: 20px;
 
 }
 
@@ -74,7 +75,8 @@ body {
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
     white-space: -pre-wrap;      /* Opera 4-6 */
     white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-wrap: break-word;   
+    padding: 20px;    /* Internet Explorer 5.5+ */
 }
 
 /* HUD styles */
@@ -102,7 +104,7 @@ body {
     filter: grayscale(1); /* Desaturate the badge */
     opacity: 0.8; /* Make it slightly transparent */
     position: relative; /* To position the tooltip */
-    z-index: 1000;  /* ensure it's above other elements */
+    z-index: 500;  /* ensure it's above other elements */
 }
 
 .badge:hover {
